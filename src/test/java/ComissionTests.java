@@ -33,13 +33,7 @@ public class ComissionTests {
         //Проверить, что появилось сообщение об ошибке
         $(By.name("error")).shouldHave(text("Неверный формат суммы"));
     }
-    @BeforeEach
-    void setUp() {
-        int timeout = 10000; // 10 секунд
-        pageLoadTimeout = 30000; // 30 секунд для загрузки страницы
-        browser = "chrome";
-        headless = false; // Показываем браузер для отладки
-    }
+
 
     @Test
     void testRepeatCalculationStep1() {
@@ -49,6 +43,7 @@ public class ComissionTests {
         $(By.name("submit")).click();
         $(By.name("com")).shouldHave(text("20"));
         $(By.name("total")).shouldHave(text("2020"));
+        sleep(5000); // Пауза для просмотра результата
     }
 
     @Test
@@ -59,5 +54,6 @@ public class ComissionTests {
         $(By.name("submit")).click();
         $(By.name("com")).shouldHave(text("10"));
         $(By.name("total")).shouldHave(text("510"));
+        sleep(5000); // Пауза для просмотра результата
     }
 }
