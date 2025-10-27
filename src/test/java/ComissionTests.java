@@ -1,6 +1,7 @@
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -32,13 +33,18 @@ public class ComissionTests {
         //Проверить, что появилось сообщение об ошибке
         $(By.name("error")).shouldHave(text("Неверный формат суммы"));
     }
-    @Test
-        //Повторный расчёт комиссии без закрытия формы - тест 1: проверка для 2000 рублей
-    void testRepeatCalculationStep1() {
-        //Предусловие 1: Открыть форму
-        open("https://slqa.ru/cases/fc/v01");
+    @BeforeEach
+    void setUp() {
+        int timeout = 10000; // 10 секунд
+        pageLoadTimeout = 30000; // 30 секунд для загрузки страницы
+        browser = "chrome";
+        headless = false; // Показываем браузер для отладки
+    }
 
-        //Предусловие 2: Проверить расчёт комиссии для суммы 2000 рублей
+    @Test
+    void testRepeatCalculationStep1() {
+        open("https://slqa.ru/cases/fc/v01");
+        sleep(2000); // Пауза для полной загрузки страницы
         $(By.name("sum")).setValue("2000");
         $(By.name("submit")).click();
         $(By.name("com")).shouldHave(text("20"));
@@ -46,16 +52,11 @@ public class ComissionTests {
     }
 
     @Test
-        //Повторный расчёт комиссии без закрытия формы - тест 2: проверка для 500 рублей
     void testRepeatCalculationStep2() {
-        //Шаг 1: Открыть форму и ввести сумму 500 рублей
         open("https://slqa.ru/cases/fc/v01");
+        sleep(2000); // Пауза для полной загрузки страницы
         $(By.name("sum")).setValue("500");
-
-        //Шаг 2: Нажать кнопку "Рассчитать"
         $(By.name("submit")).click();
-
-        //Шаг 3: Убедиться, что комиссия составит 10 рублей, сумма к оплате 510 рублей
         $(By.name("com")).shouldHave(text("10"));
         $(By.name("total")).shouldHave(text("510"));
     }
