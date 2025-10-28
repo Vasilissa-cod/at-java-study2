@@ -1,0 +1,32 @@
+[33mcommit 6ce3bb0f068b9f19db88b39aaa205daf916ad749[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author:     Liya P. <alisapuhtel@gmail.com>
+AuthorDate: Mon Oct 27 19:51:25 2025 +0300
+Commit:     Liya P. <alisapuhtel@gmail.com>
+CommitDate: Mon Oct 27 19:51:25 2025 +0300
+
+    Add SimpleTest with Selenide web tests
+
+[1mdiff --git a/src/test/java/SimpleTest.java b/src/test/java/SimpleTest.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..1c2dfcf[m
+[1m--- /dev/null[m
+[1m+++ b/src/test/java/SimpleTest.java[m
+[36m@@ -0,0 +1,18 @@[m
+[32m+[m[32mimport static com.codeborne.selenide.Condition.text;[m
+[32m+[m[32mimport static com.codeborne.selenide.Selenide.$;[m
+[32m+[m[32mimport static com.codeborne.selenide.Selenide.open;[m
+[32m+[m[32mimport org.junit.jupiter.api.Test;[m
+[32m+[m[32mimport org.openqa.selenium.By;[m
+[32m+[m
+[32m+[m[32mpublic class SimpleTest {[m
+[32m+[m[32m    @Test[m
+[32m+[m[32m    void test01() {[m
+[32m+[m[32m        open("https://slqamsk.github.io/cases/simple-pages/page01.html");[m
+[32m+[m[32m        $(By.tagName("body")).shouldHave(text("Добро пожаловать"));[m
+[32m+[m[32m    }[m
+[32m+[m[32m    @Test[m
+[32m+[m[32m    void test02() {[m
+[32m+[m[32m        open("https://slqamsk.github.io/cases/simple-pages/page01.html");[m
+[32m+[m[32m        $(By.tagName("body")).shouldNotHave(text("До свидания"));[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
