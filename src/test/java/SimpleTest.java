@@ -16,3 +16,4 @@ public class SimpleTest {
         $(By.tagName("body")).shouldNotHave(text("До свидания"));
     }
 }
+
