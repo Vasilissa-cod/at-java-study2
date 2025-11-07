@@ -43,7 +43,7 @@ public class SympleXPathTests {
     }
 
     @Test
-    void testExternalLinks(){
+    void testPageH6(){
         open("https://slqamsk.github.io/tmp/xPath01.html");
         $x("//a[@class='external-link'][1]").shouldHave(text("Внешняя ссылка (Example)"));
         $x("//a[@class='external-link'][2]").shouldHave(text("Внешняя ссылка (Google)"));
