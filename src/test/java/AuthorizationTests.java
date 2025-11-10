@@ -10,7 +10,7 @@ public class AuthorizationTests {
     @Test
     void test01LoginSuccess() {
         // Открываем страницу авторизации
-        open("https://slqa.ru/cases/ChatGPTLogin/ );
+        open("https://slqa.ru/cases/ChatGPTLogin/");
         sleep(2000); // Пауза для загрузки страницы
         
         // Вводим имя пользователя
